@@ -14,6 +14,7 @@ export default function Home() {
   const fetchEvents = async () => {
     try {
       setLoading(true);
+      console.log("Calling API...");
       const res = await fetch(API_URL);
       const data = await res.json();
       console.log("Data : ", data);
