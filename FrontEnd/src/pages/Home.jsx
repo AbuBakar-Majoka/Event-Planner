@@ -18,12 +18,11 @@ export default function Home() {
       const res = await fetch(API_URL);
       const data = await res.json();
       console.log("Data : ", data);
-      setEvents(data || []);
+      setEvents(data.data);
       setError(false);
     } catch (error) {
       console.log("Error Fetching Events: ", error);
       setError(true);
-      alert("Failed to Load Events");
     } finally {
       setLoading(false);
     }
@@ -46,6 +45,7 @@ export default function Home() {
           </p>
         )}
 
+        {console.log(events)}
         {!loading && !error && events.length === 0 && <p>No events found.</p>}
 
         {!loading && !error && events.length > 0 && (

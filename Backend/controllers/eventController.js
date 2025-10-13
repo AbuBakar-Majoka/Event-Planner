@@ -29,11 +29,16 @@ export const getAllEvents = async (req, res) => {
 
     if (events.length === 0) {
       return res.status(404).json({
+        success: false,
         message: "No events found",
+        data: events,
       });
     }
 
-    res.status(200).json(events);
+    res.status(200).json({
+      success: true,
+      data: events,
+    });
   } catch (error) {
     console.error("Error fetching events:", error.message);
     res.status(500).json({
@@ -41,7 +46,6 @@ export const getAllEvents = async (req, res) => {
     });
   }
 };
-
 
 // Create Events
 export const createEvent = async (req, res) => {
